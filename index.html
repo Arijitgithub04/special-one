@@ -305,6 +305,8 @@ input[type=file]::file-selector-button {
 @keyframes finalGlow {
   to { text-shadow:0 0 35px #ff3d8b,0 0 70px #bd3aff; }
 }
+/* music */
+
 
 /* Bottom navigation */
 
@@ -318,6 +320,70 @@ input[type=file]::file-selector-button {
   border:1px solid #ffffff20; border-radius:40px;
 }
 
+/* Romantic Music Button */
+#musicBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 85px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    padding: 13px 20px;
+    min-height: 50px;
+    border: 1px solid #ffffff80;
+    border-radius: 50px;
+
+    background: linear-gradient(135deg, #ff4089, #c33cff);
+    color: white;
+    font-family: Poppins, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    box-shadow:
+        0 0 15px #ff408980,
+        0 0 30px #c33cff50;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: musicGlow 2s infinite alternate;
+}
+
+#musicBtn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow:
+        0 0 22px #ff4089,
+        0 0 40px #c33cff90;
+}
+
+#musicBtn:active {
+    transform: scale(0.95);
+}
+
+@keyframes musicGlow {
+    from {
+        box-shadow: 0 0 10px #ff408960;
+    }
+    to {
+        box-shadow:
+            0 0 22px #ff4089,
+            0 0 35px #c33cff80;
+    }
+}
+
+@media (max-width: 480px) {
+    #musicBtn {
+        right: 12px;
+        bottom: 83px;
+        padding: 11px 15px;
+        font-size: 12px;
+    }
+}
+
+
 .bottom-nav button {
   color:white; background:#ff5599; border:0;
   border-radius:30px; padding:11px 19px;
@@ -325,11 +391,11 @@ input[type=file]::file-selector-button {
 
 .bottom-nav button:disabled { opacity:.3; cursor:default; }
 
-#musicBtn {
+/* #musicBtn {
   position:fixed; right:14px; bottom:83px; z-index:110;
   width:47px; height:47px; border:1px solid #ffffff30;
   border-radius:50%; color:white; background:#c43b98;
-}
+} */
 
 #musicFile { margin:12px auto; }
 
@@ -345,6 +411,15 @@ input[type=file]::file-selector-button {
 </head>
 
 <body>
+<button id="musicBtn" onclick="toggleMusic()">
+  <span class="music-icon">♫</span>
+    <span id="musicText">Play the Song & Tap here</span>
+    <span class="music-equalizer">
+        <i></i><i></i><i></i><i></i>
+    </span>
+</button>
+
+<audio id="music" src="arijit.mpeg" loop preload="auto"></audio>
 
 <div id="hearts"></div>
 <div class="progress" id="progress"></div>
@@ -594,11 +669,7 @@ input[type=file]::file-selector-button {
     section 11
 ====================== -->
 
-<!-- <button id="musicBtn" onclick="toggleMusic()" title="Play/Pause Music">
-  🎵
-</button> -->
-
-<audio id="music" src="arijit.mpeg" autoplay loop preload="auto"></audio>
+</body>
 
 
 
@@ -938,13 +1009,31 @@ startAutoIfEnabled();
 // ==================================
 
 const music = document.getElementById("music");
-// const musicBtn = document.getElementById("musicBtn");
+const musicBtn = document.getElementById("musicBtn");
 
-// 
-window.addEventListener("load", function () {
-  music.play().catch(error => {
-    console.log("Browser blocked autoplay:", error);
-  });
+music.volume = 0.5;
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play()
+            .then(() => {
+                musicBtn.innerHTML = "🎵 Pause Music";
+            })
+            .catch(error => {
+                console.log("Music could not play:", error);
+            });
+    } else {
+        music.pause();
+        musicBtn.innerHTML = "🎵 Play Music";
+    }
+}
+
+music.addEventListener("play", () => {
+    musicBtn.innerHTML = "🎵 Pause Music";
+});
+
+music.addEventListener("pause", () => {
+    musicBtn.innerHTML = "🎵 Play Music";
 });
 
 
