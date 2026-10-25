@@ -1,0 +1,1127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forever Yours ❤️ Birthday Surprise</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --pink:#ff5599;
+  --rose:#ffb6d5;
+  --purple:#c33cff;
+  --bg:#150617;
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+
+body {
+  min-height:100vh;
+  font-family:Poppins,sans-serif;
+  color:white;
+  background:
+    radial-gradient(ellipse at 15% 15%,#70204e,transparent 42%),
+    radial-gradient(ellipse at 85% 85%,#401654,transparent 45%),
+    linear-gradient(145deg,#100411,#270b29);
+  background-attachment:fixed;
+}
+
+h1,h2,h3 { font-family:"Dancing Script",cursive; }
+button,input { font:inherit; }
+button { cursor:pointer; }
+
+#hearts {
+  position:fixed; inset:0; pointer-events:none;
+  overflow:hidden; z-index:50;
+}
+
+.floating-heart {
+  position:absolute; bottom:-40px;
+  animation:rise linear forwards;
+}
+
+@keyframes rise {
+  to { transform:translateY(-115vh) rotate(360deg); opacity:0; }
+}
+
+.topbar {
+  position:fixed; top:12px; left:50%;
+  transform:translateX(-50%);
+  width:min(94%,650px); z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; padding:12px 17px;
+  background:#210e22e8; backdrop-filter:blur(15px);
+  border:1px solid #ffffff25; border-radius:40px;
+}
+
+.brand { color:var(--rose); font-weight:600; white-space:nowrap; }
+.page-count { font-size:12px; white-space:nowrap; }
+
+.progress {
+  position:fixed; z-index:101; top:0; left:0;
+  height:3px; width:10%;
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+  transition:width .4s;
+}
+
+.page {
+  min-height:100svh;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:100px 18px 115px;
+  text-align:center;
+}
+
+.page.active {
+  display:flex;
+  animation:pageIn .65s ease both;
+}
+
+@keyframes pageIn {
+  from { opacity:0; transform:translateY(20px) scale(.98); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+
+.content { width:min(100%,760px); }
+
+.eyebrow {
+  color:var(--rose); letter-spacing:3px;
+  text-transform:uppercase; font-size:11px; margin-bottom:16px;
+}
+
+.title {
+  font-size:clamp(43px,9vw,82px);
+  line-height:1.12; color:#ffb1d0;
+  text-shadow:0 0 30px #ff3d8b60; margin-bottom:20px;
+}
+
+.subtitle {
+  max-width:540px; margin:0 auto 25px;
+  color:#f6d5e6; line-height:1.9;
+}
+
+.glow-btn {
+  border:1px solid #ffffff25; border-radius:50px;
+  padding:13px 22px; margin:6px; color:white;
+  background:linear-gradient(120deg,#ff4089,#bc37e9);
+  box-shadow:0 0 22px #ff408955;
+  transition:transform .3s,box-shadow .3s;
+}
+
+.glow-btn:hover {
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 0 35px #ff4089aa;
+}
+
+.glow-btn:disabled { opacity:.6; }
+
+.glass {
+  background:#ffffff0c;
+  border:1px solid #ffffff20;
+  backdrop-filter:blur(14px);
+  border-radius:25px; padding:25px;
+  box-shadow:0 15px 60px #00000025;
+}
+
+.big-emoji {
+  display:block; font-size:clamp(75px,16vw,125px);
+  margin:20px 0; animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  50% { transform:scale(1.12); filter:drop-shadow(0 0 25px #ff4d95); }
+}
+
+.card-title { font-size:clamp(36px,7vw,54px); color:var(--rose); margin-bottom:20px; }
+.body-text { line-height:2; color:#f9dfed; }
+
+/* PAGE 2: ARROW GAME */
+
+.game-area {
+  position:relative; width:100%; max-width:550px;
+  height:210px; margin:25px auto; border-radius:22px;
+  background:#ffffff08; border:1px solid #ffffff20; overflow:hidden;
+}
+
+#arrow {
+  position:absolute; left:8%; top:50%;
+  transform:translateY(-50%); font-size:45px; z-index:2;
+}
+
+#gameHeart {
+  position:absolute; right:10%; top:50%;
+  transform:translateY(-50%); font-size:75px;
+  filter:drop-shadow(0 0 18px #ff347f);
+}
+
+@keyframes heartBreak {
+  30% { transform:translateY(-50%) scale(1.6) rotate(20deg); }
+  100% { transform:translateY(-50%) scale(0); opacity:0; }
+}
+
+.burst {
+  position:absolute; pointer-events:none;
+  animation:burst .9s ease-out forwards; font-size:26px;
+}
+/* Show the complete photo */
+#slidePhoto,
+.special-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
+
+
+.slide-frame,
+.special-photo-box {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #160817;
+    border-radius: 20px;
+}
+
+@keyframes burst {
+  to { transform:translate(var(--x),var(--y)) scale(.1) rotate(180deg); opacity:0; }
+}
+
+.status { min-height:30px; color:var(--rose); margin:12px 0; }
+
+/* PAGE 3 AND 4 */
+
+.message-card { max-width:600px; margin:auto; padding:35px 25px; }
+.message-card h2 { font-size:48px; color:var(--rose); margin-bottom:18px; }
+.message-card p { line-height:2; color:#f9dfed; }
+
+.quote {
+  font-family:"Dancing Script",cursive;
+  font-size:clamp(28px,6vw,42px);
+  color:#ffd4e6; margin:22px 0; min-height:110px;
+}
+
+/* PAGE 5: SLIDESHOW */
+
+.photo-frame {
+  position:relative; width:min(100%,530px);
+  height:min(52vh,440px); min-height:280px;
+  margin:20px auto; border-radius:22px; overflow:hidden;
+  background:#ffffff0b; border:1px solid #ff8dbd80;
+  box-shadow:0 0 35px #ff408925;
+}
+
+.photo-frame img { width:100%; height:100%; object-fit:contain; }
+.photo-frame.empty::after {
+  content:"📸 Select your photos below";
+  position:absolute; inset:0; display:grid; place-items:center;
+  color:#ffc0dc; pointer-events:none;
+}
+
+.photo-caption { color:#ffd6e7; margin:12px; min-height:24px; }
+
+input[type=file] {
+  display:block; width:min(100%,400px); margin:14px auto;
+  padding:12px; border-radius:14px; color:#ffe5f0;
+  background:#ffffff0d; border:1px solid #ffffff20;
+}
+
+input[type=file]::file-selector-button {
+  padding:9px 12px; border:0; border-radius:20px;
+  background:#ff5b99; color:white; margin-right:8px;
+}
+
+/* PAGE 6: SPECIAL PHOTO */
+
+.special-frame {
+  width:min(100%,440px); margin:20px auto;
+  padding:12px; border:1px solid #ff9bc5;
+  border-radius:24px; background:#ffffff0b;
+  box-shadow:0 0 40px #ff4f9150;
+}
+
+.special-frame img {
+  display:block; width:100%; height:min(55vh,500px);
+  object-fit:contain; border-radius:15px;
+}
+
+.special-empty {
+  height:300px; display:grid; place-items:center;
+  color:#ffb6d3; line-height:2;
+}
+
+/* PAGE 7: LOVE LETTER */
+
+.letter {
+  max-width:600px; margin:auto; padding:30px 24px;
+}
+
+#letterText {
+  white-space:pre-line; color:#ffe1ef; line-height:2;
+  text-align:left; min-height:100px;
+}
+
+#letterText span { animation:letterIn .3s both; }
+
+@keyframes letterIn { to { opacity:1; } }
+
+/* PAGE 8: TOUCH HEART */
+
+.touch-heart {
+  display:inline-block; font-size:115px;
+  cursor:pointer; user-select:none;
+  filter:drop-shadow(0 0 20px #ff398a);
+  animation:heartBeat 1s infinite;
+}
+
+@keyframes heartBeat {
+  0%,100% { transform:scale(1); }
+  30% { transform:scale(1.18); }
+  50% { transform:scale(1); }
+}
+
+.touch-heart.explode { animation:touchExplode .5s forwards; }
+
+@keyframes touchExplode {
+  50% { transform:scale(1.8); }
+  100% { transform:scale(0); opacity:0; }
+}
+
+/* PAGE 9 */
+
+.cake { font-size:100px; animation:cakeBounce 1.8s infinite; }
+@keyframes cakeBounce { 50% { transform:translateY(-12px); } }
+
+/* PAGE 10 */
+
+.final-title { animation:finalGlow 2s infinite alternate; }
+@keyframes finalGlow {
+  to { text-shadow:0 0 35px #ff3d8b,0 0 70px #bd3aff; }
+}
+
+/* Bottom navigation */
+
+.bottom-nav {
+  position:fixed; bottom:12px; left:50%;
+  transform:translateX(-50%); z-index:100;
+  width:min(96%,500px); display:flex;
+  justify-content:center; align-items:center;
+  gap:10px; padding:10px;
+  background:#210e22e8; backdrop-filter:blur(15px);
+  border:1px solid #ffffff20; border-radius:40px;
+}
+
+.bottom-nav button {
+  color:white; background:#ff5599; border:0;
+  border-radius:30px; padding:11px 19px;
+}
+
+.bottom-nav button:disabled { opacity:.3; cursor:default; }
+
+#musicBtn {
+  position:fixed; right:14px; bottom:83px; z-index:110;
+  width:47px; height:47px; border:1px solid #ffffff30;
+  border-radius:50%; color:white; background:#c43b98;
+}
+
+#musicFile { margin:12px auto; }
+
+@media(max-width:480px) {
+  .topbar { padding:10px 13px; }
+  .page { padding-left:13px; padding-right:13px; }
+  .glass { padding:20px 14px; }
+  .message-card { padding:25px 16px; }
+  .photo-frame { min-height:250px; }
+  .bottom-nav button { padding:10px 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="hearts"></div>
+<div class="progress" id="progress"></div>
+
+<header class="topbar">
+  <div class="brand">♡ Forever Yours</div>
+  <div class="page-count" id="pageCount">Page 1 / 10</div>
+</header>
+
+<!-- PAGE 1: WELCOME -->
+
+<section class="page active" id="page1">
+  <div class="content">
+    <div class="eyebrow">A little world made for you</div>
+    <span class="big-emoji">🎂</span>
+    <h1 class="title">Happy Birthday<br>My Bandhobi......  ❤️</h1>
+    <p class="subtitle">
+      Ajker aii din (11/11/2026) ta tomar jonno onek special.
+      Ami aii chotto gift ta tomar jonno baniyechi,Ar modhhe ache kichu Love, memories
+      and surprises, just for you. 💖
+    </p>
+    <button class="glow-btn" onclick="goTo(2);rainHearts(20)">
+      Open Your Surprise 💌
+    </button>
+  </div>
+</section>
+
+<!-- PAGE 2: ARROW GAME -->
+
+<section class="page" id="page2">
+  <div class="content glass">
+    <div class="eyebrow">Surprise number one</div>
+    <h2 class="card-title">Hit My Heart 💘</h2>
+    <p class="body-text">Touch the button and send your love!</p>
+
+    <div class="game-area" id="gameArea">
+      <div id="arrow">🏹</div>
+      <div id="gameHeart">❤️</div>
+    </div>
+
+    <p class="status" id="gameStatus">My heart is waiting for you...</p>
+
+    <button class="glow-btn" id="shootBtn" onclick="shootArrow()">
+      Shoot Your Love 💘
+    </button>
+
+    <button class="glow-btn" onclick="resetArrow()">Try Again ↻</button>
+  </div>
+</section>
+
+<!-- PAGE 3: LOVE MESSAGE -->
+
+<section class="page" id="page3">
+  <div class="content message-card glass">
+    <div class="eyebrow">A feeling from my heart</div>
+    <h2>Someone Very Special ❤️</h2>
+    <span class="big-emoji">🌹</span>
+    <p class="body-text">
+      Some people make life brighter without even trying.
+      Some smiles stay in our minds for a long time.
+      And some people hold a special place in our hearts.
+
+      <br><br>
+      You are one of those beautiful people.
+      May your birthday bring you all the happiness
+      your heart can hold. 💕
+    </p>
+  </div>
+</section>
+
+<!-- PAGE 4: ROMANTIC QUOTES -->
+
+<section class="page" id="page4">
+  <div class="content glass">
+    <div class="eyebrow">Little words, big feelings</div>
+    <h2 class="card-title">Love Notes 💌</h2>
+    <div class="quote" id="quote">
+      "You make ordinary moments feel magical." 💖
+    </div>
+    <button class="glow-btn" onclick="nextQuote()">
+      Another Love Note 💕
+    </button>
+  </div>
+</section>
+
+<!-- PAGE 5: PHOTO SLIDESHOW -->
+
+<section class="page" id="page5">
+  <div class="content">
+    <div class="eyebrow">Your beautiful memories</div>
+    <h2 class="title" style="font-size:clamp(40px,8vw,65px)">
+      Your Memories 📸
+    </h2>
+    <!-- <p class="subtitle">Choose multiple photos to create your slideshow.</p> -->
+
+    
+<!-- <label for="slidesInput" class="glow-btn">
+  📸 Select Multiple Photos
+</label>
+
+<input
+  type="file"
+  id="slidesInput"
+  accept="image/*"
+  multiple
+  style="display:block; margin:20px auto;"
+>
+
+<p id="photoCount" style="color:#ffb6d5;">
+  No photos selected yet ❤️
+</p> -->
+
+
+    <div class="photo-frame empty" id="slideFrame">
+      <img id="slidePhoto" alt="Your slideshow photo">
+    </div>
+
+    <div class="photo-caption" id="slideCaption">
+      Your beautiful pictures will appear here ❤️
+    </div>
+
+    <div>
+      <button class="glow-btn" onclick="changePhoto(-1)">❮ Previous</button>
+      <button class="glow-btn" onclick="changePhoto(1)">Next ❯</button>
+    </div>
+
+    <p class="subtitle" id="slideNumber">0 / 0</p>
+  </div>
+</section>
+
+<!-- PAGE 6: ONE SPECIAL PHOTO -->
+
+<section class="page" id="page6">
+  <div class="content">
+    <div class="eyebrow">One picture, a thousand feelings</div>
+    <h2 class="title" style="font-size:clamp(42px,8vw,68px)">
+      Just For You 💖
+    </h2>
+
+    
+
+    <div class="special-frame">
+      <div class="special-empty" id="specialPlaceholder">
+        <div>🌹<br>It's only one photo that is very special for me<br>❤️</div>
+      </div>
+      <img src="ari1.jpeg" alt="">
+    </div>
+
+    <h2 class="card-title">You Are Special 🌷</h2>
+    <p class="body-text">
+      Some pictures are more than pictures.
+      They hold memories, emotions and moments
+      I want to keep close to my heart.
+    </p>
+  </div>
+</section>
+
+<!-- PAGE 7: LOVE LETTER -->
+
+<section class="page" id="page7">
+  <div class="content letter glass">
+    <div class="eyebrow">Open this with love</div>
+    <h2 class="card-title">A Letter For You 💌</h2>
+
+    <p id="letterText" class="body-text">
+      A little letter is waiting inside...
+    </p>
+
+    <button class="glow-btn" id="letterBtn" onclick="writeLetter()">
+      Open My Letter 💕
+    </button>
+  </div>
+</section>
+
+<!-- PAGE 8: HEART EXPLOSION -->
+
+<section class="page" id="page8">
+  <div class="content glass">
+    <div class="eyebrow">A little touch of magic</div>
+    <h2 class="card-title">Touch My Heart 💗</h2>
+    <p class="subtitle">
+      Touch the heart below and watch the magic happen!
+    </p>
+
+    <div>
+      <span class="touch-heart" id="touchHeart"
+        onclick="heartMagic()">💖</span>
+    </div>
+
+    <p class="status" id="heartStatus">One touch, endless hearts...</p>
+
+    <button class="glow-btn" onclick="heartMagic()">Make It Magical ✨</button>
+  </div>
+</section>
+
+<!-- PAGE 9: BIRTHDAY WISHES -->
+
+<section class="page" id="page9">
+  <div class="content glass">
+    <div class="eyebrow">A wish from the heart</div>
+    <div class="cake">🎂</div>
+    <h2 class="title" style="font-size:clamp(43px,8vw,70px)">
+      Birthday Wishes 🌟
+    </h2>
+    <p class="body-text">
+      May your days be filled with laughter,
+      your dreams with possibilities,
+      your heart with peace,
+      and your life with beautiful memories.
+
+      <br><br>
+      May this new year of your life bring
+      success, good health, love and countless reasons to smile.
+
+      <br><br>
+      Happy Birthday! my Bandhobi........❤️
+    </p>
+    <button class="glow-btn" onclick="rainHearts(45)">
+      Send Birthday Love 🎉
+    </button>
+  </div>
+</section>
+
+<!-- PAGE 10: FINAL SURPRISE -->
+
+<section class="page" id="page10">
+  <div class="content">
+    <div class="eyebrow">One last little surprise</div>
+    <span class="big-emoji">💝</span>
+    <h1 class="title final-title">Happy Birthday<br>My Special One ❤️</h1>
+
+    <p class="subtitle" id="finalMessage">
+      May you always find reasons to smile
+      and people who appreciate your beautiful heart.
+    </p>
+
+    <button class="glow-btn" onclick="finalMagic()">
+      One Last Surprise ✨
+    </button>
+
+    <p style="margin-top:25px;color:#ffb6d5">
+      Made with love, just for you ♡
+    </p>
+  </div>
+</section>
+<!-- ======================
+    section 11
+====================== -->
+
+<!-- <button id="musicBtn" onclick="toggleMusic()" title="Play/Pause Music">
+  🎵
+</button> -->
+
+<audio id="music" src="arijit.mpeg" autoplay loop preload="auto"></audio>
+
+
+//PREVIOUS / NEXT CONTROLS
+
+<div class="bottom-nav">
+  <button id="prevBtn" onclick="goTo(currentPage-1)">❮ Back</button>
+  <button id="nextBtn" onclick="goTo(currentPage+1)">Next ❯</button>
+</div>
+
+<!-- <button id="musicBtn" onclick="toggleMusic()" title="Music">🎵</button>
+
+<div style="position:fixed;left:-9999px;top:0">
+  <input type="file" id="musicFile" accept="audio/*">
+</div>
+<audio id="music" loop></audio> -->
+
+<script>
+/* ==================================
+   PAGE NAVIGATION: 10 INNER PAGES
+================================== */
+
+let currentPage = 1;
+
+function goTo(number) {
+  if (number < 1 || number > 10) return;
+
+  currentPage = number;
+
+  document.querySelectorAll(".page").forEach((page, index) => {
+    page.classList.toggle("active", index === number - 1);
+  });
+
+  document.getElementById("pageCount").textContent =
+    `Page ${number} / 10`;
+
+  document.getElementById("progress").style.width =
+    `${number * 10}%`;
+
+  document.getElementById("prevBtn").disabled = number === 1;
+
+  document.getElementById("nextBtn").disabled = number === 10;
+
+  window.scrollTo({top: 0, behavior: "smooth"});
+
+  if (number === 5) startAutoIfEnabled();
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key === "ArrowRight") goTo(currentPage + 1);
+  if (event.key === "ArrowLeft") goTo(currentPage - 1);
+});
+
+
+/* ==================================
+   FLOATING HEARTS
+================================== */
+
+function rainHearts(amount = 20) {
+  const container = document.getElementById("hearts");
+
+  for (let i = 0; i < amount; i++) {
+    const heart = document.createElement("span");
+    heart.className = "floating-heart";
+    heart.textContent = ["❤️","💖","💕","💗","💘","🌹"][
+      Math.floor(Math.random() * 6)
+    ];
+
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.fontSize = (16 + Math.random() * 25) + "px";
+    heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+    container.appendChild(heart);
+    setTimeout(() => heart.remove(), 8500);
+  }
+}
+
+setInterval(() => rainHearts(2), 1300);
+
+
+/* ==================================
+   PAGE 2: ARROW HITS HEART
+================================== */
+
+let arrowUsed = false;
+
+function shootArrow() {
+  if (arrowUsed) return;
+  arrowUsed = true;
+
+  const arrow = document.getElementById("arrow");
+  const heart = document.getElementById("gameHeart");
+  const btn = document.getElementById("shootBtn");
+
+  btn.disabled = true;
+  document.getElementById("gameStatus").textContent =
+    "Your love is on its way... 💘";
+
+  arrow.style.transition = "left 1s ease-in-out";
+  arrow.style.left = "78%";
+
+  setTimeout(() => {
+    heart.style.animation = "heartBreak .6s forwards";
+    document.getElementById("gameStatus").textContent =
+      "You captured my heart! ❤️";
+
+    explodeInArea(document.getElementById("gameArea"), 35);
+    rainHearts(25);
+  }, 1000);
+}
+
+function resetArrow() {
+  arrowUsed = false;
+
+  const arrow = document.getElementById("arrow");
+  const heart = document.getElementById("gameHeart");
+
+  arrow.style.transition = "none";
+  arrow.style.left = "8%";
+
+  heart.style.animation = "none";
+  heart.style.opacity = "1";
+  heart.style.transform = "translateY(-50%)";
+
+  document.getElementById("shootBtn").disabled = false;
+  document.getElementById("gameStatus").textContent =
+    "My heart is waiting for you...";
+
+  setTimeout(() => heart.style.animation = "", 30);
+}
+
+/* Allow retry using the button on page 2 */
+document.querySelector("#page2 .glow-btn:last-child")
+  .addEventListener("click", resetArrow);
+
+function explodeInArea(area, amount) {
+  const rect = area.getBoundingClientRect();
+
+  for (let i = 0; i < amount; i++) {
+    const particle = document.createElement("span");
+    particle.className = "burst";
+    particle.textContent = ["❤️","💗","💖","💕","✨"][
+      Math.floor(Math.random() * 5)
+    ];
+
+    particle.style.left = (rect.width * .8) + "px";
+    particle.style.top = (rect.height * .5) + "px";
+    particle.style.setProperty("--x", (Math.random() - .5) * 380 + "px");
+    particle.style.setProperty("--y", (Math.random() - .5) * 260 + "px");
+
+    area.appendChild(particle);
+    setTimeout(() => particle.remove(), 1000);
+  }
+}
+
+
+/* ==================================
+   PAGE 4: ROMANTIC QUOTES
+================================== */
+
+const quotes = [
+  '"You make ordinary moments feel magical." 💖',
+  '"The world feels softer when kindness is near." 🌹',
+  '"Some memories become little treasures of the heart." 💕',
+  '"May your smile always find a reason to shine." ✨',
+  '"You deserve a life filled with beautiful moments." 💗',
+  '"A little love can make an ordinary day unforgettable." 💘'
+];
+
+let quoteIndex = 0;
+
+function nextQuote() {
+  quoteIndex = (quoteIndex + 1) % quotes.length;
+
+  const quote = document.getElementById("quote");
+  quote.animate(
+    [{opacity:0, transform:"translateY(12px)"},
+     {opacity:1, transform:"translateY(0)"}],
+    {duration:500}
+  );
+
+  quote.textContent = quotes[quoteIndex];
+  rainHearts(5);
+}
+
+
+/* ==================================
+   PAGE 5: MULTIPLE PHOTO SLIDESHOW
+================================== */
+
+// let photoURLs = ["ari2.jpeg","ari3.jpeg","ari4.jpeg","ari5.jpeg","ari6.jpeg","ari7.jpeg"];
+// let photoIndex = 0;
+// let autoSlide = false;
+// let slideInterval = null;
+
+// const slideInput = document.getElementById("slidesInput");
+// const slidePhoto = document.getElementById("slidePhoto");
+// const slideFrame = document.getElementById("slideFrame");
+
+// slideInput.addEventListener("change", event => {
+//   photoURLs.forEach(url => URL.revokeObjectURL(url));
+
+//   photoURLs = Array.from(event.target.files)
+//     .filter(file => file.type.startsWith("image/"))
+//     .map(file => URL.createObjectURL(file));
+
+//   photoIndex = 0;
+//   displayPhoto();
+// });
+
+// function displayPhoto() {
+//   const caption = document.getElementById("slideCaption");
+
+//   if (photoURLs.length === 0) {
+//     slidePhoto.hidden = true;
+//     slideFrame.classList.add("empty");
+//     caption.textContent = "Select your beautiful photos ❤️";
+//     document.getElementById("slideNumber").textContent = "0 / 0";
+//     return;
+//   }
+
+//   slideFrame.classList.remove("empty");
+//   slidePhoto.hidden = false;
+//   slidePhoto.src = photoURLs[photoIndex];
+
+//   caption.textContent = `Memory ${photoIndex + 1} ❤️`;
+//   document.getElementById("slideNumber").textContent =
+//     `${photoIndex + 1} / ${photoURLs.length}`;
+// }
+
+// function changePhoto(direction) {
+//   if (!photoURLs.length) {
+//     alert("Please select your photos first.");
+//     return;
+//   }
+
+//   photoIndex =
+//     (photoIndex + direction + photoURLs.length) % photoURLs.length;
+
+//   displayPhoto();
+// }
+
+// function startAutoIfEnabled() {
+//   if (!autoSlide || slideInterval) return;
+
+//   slideInterval = setInterval(() => {
+//     if (currentPage === 5 && photoURLs.length) {
+//       changePhoto(1);
+//     }
+//   }, 3000);
+// }
+
+// function toggleAuto() {
+//   if (!photoURLs.length) {
+//     alert("First select multiple photos for the slideshow.");
+//     return;
+//   }
+
+//   autoSlide = !autoSlide;
+
+//   document.getElementById("autoBtn").textContent =
+//     autoSlide ? "⏸ Pause Slide" : "▶ Auto Slide";
+
+//   if (autoSlide) {
+//     startAutoIfEnabled();
+//   } else {
+//     clearInterval(slideInterval);
+//     slideInterval = null;
+//   }
+// }
+
+/* PAGE 5: PREDEFINED PHOTO SLIDESHOW */
+
+const photoURLs = [
+  "ari2.jpeg",
+  "ari3.jpeg",
+  "ari4.jpeg",
+  "ari5.jpeg",
+  "ari6.jpeg",
+  "ari7.jpeg"
+];
+
+let photoIndex = 0;
+let autoSlide = true;
+let slideInterval = null;
+
+const slidePhoto = document.getElementById("slidePhoto");
+const slideFrame = document.getElementById("slideFrame");
+
+function displayPhoto() {
+  const caption = document.getElementById("slideCaption");
+  const number = document.getElementById("slideNumber");
+
+  if (!photoURLs.length) return;
+
+  slideFrame.classList.remove("empty");
+  slidePhoto.hidden = false;
+  slidePhoto.src = photoURLs[photoIndex];
+
+  caption.textContent = `Memory ${photoIndex + 1} ❤️`;
+  number.textContent = `${photoIndex + 1} / ${photoURLs.length}`;
+}
+
+function changePhoto(direction) {
+  photoIndex =
+    (photoIndex + direction + photoURLs.length) % photoURLs.length;
+
+  displayPhoto();
+}
+
+function startAutoIfEnabled() {
+  if (slideInterval) return;
+
+  slideInterval = setInterval(() => {
+    if (currentPage === 5) {
+      changePhoto(1);
+    }
+  }, 3000);
+}
+displayPhoto();
+startAutoIfEnabled();
+
+// function toggleAuto() {
+//   autoSlide = !autoSlide;
+
+//   document.getElementById("autoBtn").textContent =
+//     autoSlide ? "⏸ Pause Slide" : "▶ Auto Slide";
+
+//   if (autoSlide) {
+//     startAutoIfEnabled();
+//   } else {
+//     clearInterval(slideInterval);
+//     slideInterval = null;
+//   }
+// }
+// ==================================
+//    PAGE 5: ONE SPECIAL PHOTO
+// ==================================
+
+const music = document.getElementById("music");
+// const musicBtn = document.getElementById("musicBtn");
+
+// 
+window.addEventListener("load", function () {
+  music.play().catch(error => {
+    console.log("Browser blocked autoplay:", error);
+  });
+});
+
+
+
+/* ==================================
+   PAGE 6: ONE SPECIAL PHOTO
+================================== */
+
+// const specialInput = document.getElementById("specialInput");
+// const specialPhoto = document.getElementById("specialPhoto");
+
+// specialInput.addEventListener("change", event => {
+//   const file = event.target.files[0];
+
+//   if (!file || !file.type.startsWith("image/")) return;
+
+//   if (specialPhoto.dataset.url) {
+//     URL.revokeObjectURL(specialPhoto.dataset.url);
+//   }
+
+//   const url = URL.createObjectURL(file);
+
+//   specialPhoto.dataset.url = url;
+//   specialPhoto.src = url;
+//   specialPhoto.hidden = false;
+
+//   document.getElementById("specialPlaceholder").hidden = true;
+//   rainHearts(12);
+// });
+
+
+/* ==================================
+   PAGE 7: ANIMATED LOVE LETTER
+================================== */
+
+const letterMessage =
+`My Dearest Special One ❤️
+
+Today is your birthday, and I wish you
+a world full of happiness and beautiful memories.
+
+May your dreams grow bigger,
+may your smile shine brighter,
+and may life bring you wonderful surprises.
+
+You deserve kindness, peace, success,
+good health and all the little things
+that make a heart truly happy.
+
+Thank you for being someone so special.
+
+May this birthday become the beginning
+of an amazing new chapter in your life.
+
+Happy Birthday! 🎂
+
+Sending warm wishes and lots of love. 💖`;
+
+let letterStarted = false;
+
+function writeLetter() {
+  if (letterStarted) return;
+  letterStarted = true;
+
+  const output = document.getElementById("letterText");
+  const btn = document.getElementById("letterBtn");
+
+  output.textContent = "";
+  btn.disabled = true;
+  btn.textContent = "Writing with love... 💌";
+
+  let i = 0;
+
+  function typeNext() {
+    if (i >= letterMessage.length) {
+      btn.textContent = "Letter Opened ❤️";
+      return;
+    }
+
+    output.textContent += letterMessage[i];
+    i++;
+
+    setTimeout(typeNext, 28);
+  }
+
+  typeNext();
+}
+
+
+/* ==================================
+   PAGE 8: TOUCH HEART EXPLOSION
+================================== */
+
+let heartTouched = false;
+
+function heartMagic() {
+  const heart = document.getElementById("touchHeart");
+  const status = document.getElementById("heartStatus");
+
+  heartTouched = !heartTouched;
+
+  heart.classList.remove("explode");
+  void heart.offsetWidth;
+  heart.classList.add("explode");
+
+  status.textContent = "Sending you a sky full of love! 💖";
+
+  rainHearts(55);
+
+  setTimeout(() => {
+    heart.classList.remove("explode");
+    heart.textContent = heartTouched ? "💗" : "💖";
+  }, 550);
+}
+
+
+/* ==================================
+   PAGE 10: FINAL SURPRISE
+================================== */
+
+function finalMagic() {
+  document.getElementById("finalMessage").innerHTML =
+    "May every tomorrow bring you happiness. ❤️<br><br>" +
+    "Keep smiling, keep dreaming, and enjoy your special day! 🎂<br><br>" +
+    "<strong>I am sending you a million virtual hearts! 💖</strong>";
+
+  rainHearts(70);
+}
+
+
+/* ==================================
+   OPTIONAL BACKGROUND MUSIC
+================================== */
+
+
+musicFile.addEventListener("change", event => {
+  const file = event.target.files[0];
+
+  if (!file || !file.type.startsWith("audio/")) return;
+
+  if (music.dataset.url) URL.revokeObjectURL(music.dataset.url);
+
+  const url = URL.createObjectURL(file);
+  music.dataset.url = url;
+  music.src = url;
+
+  music.play().then(() => {
+    musicBtn.textContent = "🔊";
+  }).catch(() => {
+    musicBtn.textContent = "🎵";
+  });
+});
+
+function toggleMusic() {
+  if (!music.src) {
+    musicFile.click();
+    return;
+  }
+
+  if (music.paused) {
+    music.play().then(() => {
+      musicBtn.textContent = "🔊";
+    }).catch(() => {
+      alert("Please select your music file again.");
+    });
+  } else {
+    music.pause();
+    musicBtn.textContent = "🎵";
+  }
+}
+
+
+/* INITIALIZE */
+
+goTo(1);
+displayPhoto();
+</script>
+
+</body>
+</html>
